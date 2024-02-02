@@ -1,0 +1,12 @@
+<!-- book_confirm_delete.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Delete Book</h1>
+  <p>Are you sure you want to delete "{{ book.title }}"?</p>
+  <form method="post" action="{% url 'delete_book' book.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+  </form>
+  <a href="{% url 'book_list' %}">Cancel</a>
+{% endblock %}

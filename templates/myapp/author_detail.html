@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+
+    <span>Date of Birth: {{ author.date_of_birth }} | </span>
+    <span>Date of Death: {{ author.date_of_death }}</span>
+
+    <h2>Books by {{ author.first_name }} {{ author.last_name }}</h2>
+    
+    {% if author.books.all %}
+        <ul>
+            {% for book in author.books.all %}
+                <li>{{ book.title }}</li>
+                <li>{{ book.summary }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books by this author.</p>
+    {% endif %}
+{% endblock %}
+
+
+{% block sidebar %}
+  {{ block.super }}
+
+  {% if perms.catalog.change_author or perms.catalog.delete_author %}
+  <hr>
+  <ul class="sidebar-nav">
+    {% if perms.catalog.change_author %}
+      <li><a href="{% url 'author-update' author.id %}">Update author</a></li>
+    {% endif %}
+    {% if not author.book_set.all and perms.catalog.delete_author %}
+      <li><a href="{% url 'author-delete' author.id %}">Delete author</a></li>
+    {% endif %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
+
