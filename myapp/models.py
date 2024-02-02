@@ -4,10 +4,7 @@ import uuid
 from django.conf import settings
 from datetime import date
 
-# Create your models here.
-
-
-
+# Create your models here
 
 class Genre(models.Model):
     """Model representing a book genre."""

@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'crispy_forms',
+    'crispy_tailwind',
+    'tailwind',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +156,6 @@ if 'DATABASE_URL' in os.environ:
         conn_max_age=500,
         conn_health_checks=True,
     )
+
+
+CRISPY_TEMPLATE_PACK = 'tailwind'

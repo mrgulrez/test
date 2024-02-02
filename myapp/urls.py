@@ -1,6 +1,14 @@
 from django.urls import path
 from .views import IndexView, BookListView, BookDetailView,AuthorListView, AuthorDetailView, LoanedBooksByUserListView, LoanedBooksAllListView, renew_book_librarian
-from .views import AuthorCreate, AuthorUpdate, AuthorDelete, BookCreate, BookUpdate, BookDelete
+from .views import (
+    AuthorCreate,
+    AuthorUpdate,
+    AuthorDelete,
+    BookCreate,
+    BookUpdate,
+    BookDelete)
+from django.contrib.auth.views import LogoutView
+from .views import UserSignupView
 
 # app_name = 'myapp'
 urlpatterns = [
@@ -20,4 +28,7 @@ urlpatterns = [
   path('book/create/', BookCreate.as_view(), name='book-create'),
   path('book/<int:pk>/update/', BookUpdate.as_view(), name='book-update'),
   path('book/<int:pk>/delete/', BookDelete.as_view(), name='book-delete'),
+
+  path('logout/', LogoutView.as_view(), name='logout'),
+  path("signup/", UserSignupView.as_view(), name="signup"),
 ]
